@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += new Vector3(0, 0, playerSpeed * 1 * Time.deltaTime);
+        float horizontalMoveDirection = Input.GetAxis("Horizontal");
+        gameObject.transform.position += new Vector3(horizontalMoveDirection*playerSpeed*Time.deltaTime, 0, playerSpeed * Time.deltaTime);
+        
     }
 }
