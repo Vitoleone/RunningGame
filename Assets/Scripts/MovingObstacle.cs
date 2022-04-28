@@ -6,15 +6,19 @@ public class MovingObstacle : MonoBehaviour
 {
     [SerializeField] bool isHorizontal, isVertical;
     [SerializeField] float obstacleSpeed;
+    [SerializeField] GameObject[] startPoint;
+    Transform startPointTransform;
+    int randomStartPoint;
     void Start()
     {
-        
+       
     }
 
     
     void Update()
     {
-        if(isHorizontal)
+       
+        if (isHorizontal)
         {
         gameObject.transform.position += new Vector3(obstacleSpeed*Time.deltaTime, 0, 0);
         }
@@ -33,6 +37,12 @@ public class MovingObstacle : MonoBehaviour
         else if(isVertical && collision.collider.CompareTag("Ceiling"))
         {
             obstacleSpeed *= -1;
+        }
+        if(collision.collider.CompareTag("Player") || collision.collider.CompareTag("Opponent"))
+        {
+            randomStartPoint = Random.Range(0, startPoint.Length - 1);
+            startPointTransform = startPoint[randomStartPoint].GetComponent<Transform>();
+            collision.collider.transform.position = startPointTransform.position;
         }
     }
 }

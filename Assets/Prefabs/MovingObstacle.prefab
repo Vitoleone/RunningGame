@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.812663
+      value: 3.486426
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1893816
+      value: -0.5032251
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1116018
+      value: 67.061844
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68,6 +68,14 @@ PrefabInstance:
       value: MovingObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 014b2cafda6a8e84799015682108cbd6, type: 3}
       propertyPath: m_TagString
       value: Obstacle
       objectReference: {fileID: 0}
@@ -92,7 +100,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 124
   m_CollisionDetection: 0
 --- !u!136 &4850418468613218663
 CapsuleCollider:
@@ -122,4 +130,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHorizontal: 1
   isVertical: 0
-  obstacleSpeed: 10
+  obstacleSpeed: 0
+  startPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
