@@ -18,20 +18,20 @@ public class rotationPlatform : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Opponent"))
         {
-
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(rotationSpeed * -rotationDirection * impulse, 0, 0), ForceMode.Acceleration);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(rotationSpeed * -rotationDirection * impulse, 0, 0), ForceMode.Impulse);
+           
 
 
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Opponent"))
         {
 
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.zero, ForceMode.Acceleration);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.zero, ForceMode.Impulse);
 
 
         }

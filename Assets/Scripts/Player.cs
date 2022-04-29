@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
     Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
