@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Paint : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Paint : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
     Color[] colors;
+    public Text percentageText;
+    float percentage = 0;
 
 
     private void Start()
@@ -20,22 +23,23 @@ public class Paint : MonoBehaviour
         gameObject.AddComponent<MeshCollider>();
         gameObject.GetComponent<MeshCollider>().sharedMesh = mesh;
         colors = new Color[vertices.Length];
+        
     }
     private void Update()
     {
         RaycastHit hit;
         if (Input.GetMouseButton(0))
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.transform.gameObject.tag == "Wall")
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.transform.gameObject.tag == "Wall" && colors[hit.triangleIndex] != Color.red)
             {
-               
+
                 // create new colors array where the colors will be created.
 
 
                 colors[hit.triangleIndex] = Color.red;
-                
-               
 
+                percentage++;
+                percentageText.text = ((percentage*100)/20).ToString(); 
 
                 // assign the array of colors to the Mesh.
                 mesh.colors = colors;
@@ -45,25 +49,10 @@ public class Paint : MonoBehaviour
     }
     void CreateShape()
     {
-        //vertices = new Vector3[]
-        //{
-        //    //new Vector3(0,0,0),
-        //    //new Vector3(0,0,1),
-        //    //new Vector3(1,0,0),
-        //    //new Vector3(1,0,1),
-        //    //new Vector3(2,0,0),
-        //    //new Vector3(2,0,1),
+      //creates squares(one square = 2 triangle)
+        vertices = CreateVertices(10);
+        triangles = CreateTriangles(10);
 
-        //};
-        vertices = CreateVertices(20);
-        triangles = CreateTriangles(20);
-        //triangles = new int[]
-        //{
-        //    0,1,2,
-        //    1,3,2,
-        //    2,3,4,
-        //    3,5,4,
-        //};
     }
     void UpdateMesh()
     {
