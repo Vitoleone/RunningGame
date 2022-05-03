@@ -10,7 +10,7 @@ public class Paint : MonoBehaviour
     int[] triangles;
     Color[] colors;
 
-    
+
     private void Start()
     {
         mesh = new Mesh();
@@ -24,18 +24,18 @@ public class Paint : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.transform.gameObject.tag == "Wall")
             {
-                Debug.Log(hit.triangleIndex);
+               
                 // create new colors array where the colors will be created.
-                
+
 
                 colors[hit.triangleIndex] = Color.red;
-                colors[hit.triangleIndex+1] = Color.red;
-                colors[hit.triangleIndex+2] = Color.red;
                 
+               
+
 
                 // assign the array of colors to the Mesh.
                 mesh.colors = colors;
@@ -70,7 +70,7 @@ public class Paint : MonoBehaviour
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-        
+
         mesh.RecalculateNormals();
 
     }
@@ -78,18 +78,18 @@ public class Paint : MonoBehaviour
     Vector3[] CreateVertices(int quantity)
     {
         int x = 0;
-        int y = 0;  
+        int y = 0;
         int z = 0;
         Vector3[] vertices;
-        vertices = new Vector3[quantity*3];
+        vertices = new Vector3[quantity * 3];
 
-        for (int i = 0; i < quantity*3; i++)
+        for (int i = 0; i < quantity * 3; i++)
         {
-            if(i == 0)
+            if (i == 0)
             {
                 vertices[i] = new Vector3(x, y, z);
             }
-            else if( i%2 != 0)
+            else if (i % 2 != 0)
             {
                 z++;
                 vertices[i] = new Vector3(x, y, z);
@@ -109,37 +109,37 @@ public class Paint : MonoBehaviour
         int second = 1;
         int third = 0;
         int[] triangles;
-        triangles = new int[quantity*6];
-        
+        triangles = new int[quantity * 6];
+
         int counter = 0;
-        for (int i = 0; i < quantity*6; i++)
+        for (int i = 0; i < quantity * 6; i++)
         {
-            if(counter == 0)
+            if (counter == 0)
             {
                 first++;
                 triangles[i] = first;
                 counter++;
             }
-            else if(counter == 1)
+            else if (counter == 1)
             {
-                if(i %2 != 0)
+                if (i % 2 != 0)
                 {
-                    triangles[i] = second;  
-                    
+                    triangles[i] = second;
+
                 }
                 else
                 {
                     second += 2;
                     triangles[i] = second;
-                   
+
                 }
                 counter++;
             }
-            else if(counter == 2)
+            else if (counter == 2)
             {
                 if (i % 2 != 0)
                 {
-                   
+
                     triangles[i] = third;
                 }
                 else
