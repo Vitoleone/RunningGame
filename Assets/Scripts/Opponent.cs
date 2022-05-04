@@ -26,12 +26,19 @@ public class Opponent : MonoBehaviour
     {
        
         
-            nav.SetDestination(finishLineTransform.position*Time.deltaTime);
+            nav.SetDestination(finishLineTransform.position);
         
        
 
     }
-  
- 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FinishLine")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+
 
 }

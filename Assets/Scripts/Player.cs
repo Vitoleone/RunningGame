@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     float moveFactorX;
     [SerializeField]float swerveSpeed;
     [SerializeField] GameObject paintableWall;
-    [SerializeField] Animator animator;
+    Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         {
             playerSpeed = 0;
             swerveSpeed = 0;
+            GameObject.Find("GameController").GetComponent<Position>().enabled = false;
             animator.SetFloat("speed", playerSpeed);
             animator.SetBool("isVictory", true);
             other.gameObject.SetActive(false);
