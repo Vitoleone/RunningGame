@@ -36,7 +36,7 @@ public class MovingDonut : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            rb.velocity = Vector3.zero;
+         //rb.velocity = Vector3.zero;
             direction = -direction;
             //rb.AddForce(new Vector3(direction * speed, 0, 0));
             rb.velocity = (new Vector3(direction * speed, 0, 0));

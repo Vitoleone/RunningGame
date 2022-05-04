@@ -16,14 +16,19 @@ public class Opponent : MonoBehaviour
         finishLineTransform = finishLine.transform;
        
         nav = GetComponent<NavMeshAgent>();
-        
-        
+        //nav.SetDestination(finishLineTransform.position);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(finishLineTransform.position);
+       
+        
+            nav.SetDestination(finishLineTransform.position*Time.deltaTime);
+        
+       
 
     }
   

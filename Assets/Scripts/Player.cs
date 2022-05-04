@@ -6,12 +6,17 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
     Rigidbody rb;
-
+    float lastFrameFingerPositionx;
+    float moveFactorX;
+    [SerializeField]float swerveSpeed;
+    [SerializeField] GameObject paintableWall;
+    [SerializeField] Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        animator.SetFloat("speed", playerSpeed);
         
-
     }
 
     // Update is called once per frame
@@ -19,8 +24,21 @@ public class Player : MonoBehaviour
     {
         float horizontalMoveDirection = Input.GetAxis("Horizontal");
         
-        
-       rb.velocity = new Vector3(horizontalMoveDirection * playerSpeed, rb.velocity.y, playerSpeed);
+        if(Input.GetMouseButtonDown(0))
+        {
+            lastFrameFingerPositionx = Input.mousePosition.x;
+        }
+        else if(Input.GetMouseButton(0))
+        {
+            moveFactorX = Input.mousePosition.x - lastFrameFingerPositionx;
+            lastFrameFingerPositionx = Input.mousePosition.x;
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            moveFactorX = 0;
+        }
+       //rb.velocity = new Vector3(playerSpeed, rb.velocity.y, playerSpeed);
+        transform.Translate(moveFactorX * Time.deltaTime * swerveSpeed, 0, playerSpeed);
         
         
        
@@ -31,7 +49,11 @@ public class Player : MonoBehaviour
         if(other.CompareTag("FinishLine"))
         {
             playerSpeed = 0;
-            Time.timeScale = 0;
+            swerveSpeed = 0;
+            animator.SetFloat("speed", playerSpeed);
+            animator.SetBool("isVictory", true);
+            other.gameObject.SetActive(false);
+            paintableWall.SetActive(true);
         }
     }
     public void PlayerMove(float moveDirection, float speed)
