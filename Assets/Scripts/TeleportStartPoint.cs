@@ -18,4 +18,14 @@ public class TeleportStartPoint : MonoBehaviour
             collision.collider.transform.position = startPointTransform.position;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Opponent"))
+        {
+            randomStartPoint = Random.Range(0, startPoint.Length - 1);
+            startPointTransform = startPoint[randomStartPoint].GetComponent<Transform>();
+            other.transform.position = startPointTransform.position;
+        }
+    }
 }

@@ -26,17 +26,36 @@ public class Rotator : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (isStick)
+       if(collision.gameObject.CompareTag("Opponent"))
         {
-            Debug.Log("Stick Girdi");
-            Rigidbody rb = collision.collider.attachedRigidbody;
-            if (rb != null)
+            if (isStick)
             {
-                Debug.Log("Stick Girdi2");
-                Vector3 forceDirection = -collision.gameObject.transform.position - gameObject.GetComponent<MeshCollider>().transform.position;
-                forceDirection.y = 0;
-                forceDirection.Normalize();
-                rb.AddForceAtPosition(forceDirection * impulse, transform.position, ForceMode.Impulse);
+
+                Rigidbody rb = collision.collider.attachedRigidbody;
+                if (rb != null)
+                {
+
+                    Vector3 forceDirection = -collision.gameObject.transform.position - gameObject.GetComponent<MeshCollider>().transform.position;
+                    forceDirection.y = 0;
+                    forceDirection.Normalize();
+                    rb.AddForceAtPosition(forceDirection * impulse/5, transform.position, ForceMode.Impulse);
+                }
+            }
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (isStick)
+            {
+
+                Rigidbody rb = collision.collider.attachedRigidbody;
+                if (rb != null)
+                {
+
+                    Vector3 forceDirection = -collision.gameObject.transform.position - gameObject.GetComponent<MeshCollider>().transform.position;
+                    forceDirection.y = 0;
+                    forceDirection.Normalize();
+                    rb.AddForceAtPosition(forceDirection * impulse*10000, transform.position, ForceMode.Impulse);
+                }
             }
         }
     }
